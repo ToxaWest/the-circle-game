@@ -1,38 +1,122 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  height: 100%; /* Changed from min-height: 100vh */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
-.App-link {
+.App-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+h1 {
+  margin: 0;
+  font-size: 2.5rem;
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  max-width: 90vh; /* Prevents it from getting too wide on desktop */
+}
+
+canvas {
+  background-color: #1a1c22;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  border-radius: 8px;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+p {
+  font-size: 1.2rem;
+  opacity: 0.8;
+  margin: 10px 0 0 0;
+}
+
+.game-stats {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  width: 100%;
+  font-size: 1.2rem;
+}
+
+.game-stats div {
+  background-color: #1a1c22;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.game-stats span {
+  color: #61dafb;
+  font-weight: bold;
+  display: block;
+  font-size: 1.5rem;
+}
+
+button {
+  background-color: #61dafb;
+  color: #282c34;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #ffffff;
+}
+
+.highscore-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px;
+  background-color: #1a1c22;
+  border-radius: 8px;
+  align-items: center;
+}
+
+.highscore-form h3 {
+  margin: 0 0 5px 0;
+  color: #61dafb;
+}
+
+.highscore-form input {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #444;
+  background-color: #282c34;
+  color: white;
+  text-align: center;
+  font-size: 1rem;
 }

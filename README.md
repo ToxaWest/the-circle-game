@@ -1,70 +1,57 @@
-# Getting Started with Create React App
+# The Circle Game
+
+A simple, reflex-based game built with React, featuring a responsive design, PWA capabilities, and a local high score system.
+
+## How to Play
+
+Click on the canvas when the moving dot enters a quadrant. Each click fills the quadrant a little and increases the dot's speed.
+
+**Game Mechanics:**
+*   **Filling Quadrants:** Click to fill the quadrant where the dot is. Each click increases the fill level of that quadrant.
+*   **Speed Increase:** The dot's speed increases with every successful click.
+*   **Full Circle Bonus/Reset:** When all four quadrants have at least one level of fill, all quadrants are reset (fill level reduced by 1), and the dot's speed is significantly reduced (by 3 clicks back). This provides a temporary reprieve from high speeds.
+*   **Game Over:** The game ends if any single quadrant becomes completely full (reaches `MAX_FILL_LEVEL`).
+*   **High Score:** Your best score is saved locally in your browser. If you achieve a new high score, you'll be prompted to enter your name.
+*   **Speed Halving:** For every 100 points you score, the dot's speed is automatically halved, providing periodic difficulty adjustments.
+
+## Features
+
+*   **Responsive Design:** Adapts to various screen sizes, including mobile devices.
+*   **Progressive Web App (PWA):** Installable on your device for an app-like experience and offline access.
+*   **Local High Score System:** Compete against yourself and track your best performance.
+*   **Dynamic Speed Adjustment:** Speed increases with score, but is reset on full circles and halved on 100-point milestones.
+
+## Development
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+### Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+#### `npm install`
 
-Runs the app in the development mode.\
+Installs all necessary dependencies, including Workbox for PWA features.
+
+#### `npm start`
+
+Runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
+The page will reload when you make changes.
 You may also see any lint errors in the console.
 
-### `npm test`
+#### `npm run build`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Builds the app for production to the `build` folder.
+It correctly bundles React in production mode and optimizes the build for the best performance. Your app is ready to be deployed!
 
-### `npm run build`
+## PWA (Progressive Web App)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This application is configured as a PWA. To use the full PWA features:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1.  Run `npm run build`.
+2.  Deploy the `build` folder to a static server.
+3.  Access the app via HTTPS. Most browsers will then offer to "Install app" or "Add to Home screen".
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+For full icon support across all platforms, you may need to generate various PNG sizes of the `favicon.svg` and update `public/manifest.json` accordingly.
