@@ -21,6 +21,37 @@ function App() {
   const [isNewHighScore, setIsNewHighScore] = useState(false);
   const [playerName, setPlayerName] = useState('');
 
+  // PWA Install Prompt State
+  const [deferredPrompt, setDeferredPrompt] = useState(null);
+
+  // --- PWA Install Prompt Listener ---
+  useEffect(() => {
+    const handleBeforeInstallPrompt = (e) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+    };
+
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    };
+  }, []);
+
+  const handleInstallClick = () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('User accepted the A2HS prompt');
+        } else {
+          console.log('User dismissed the A2HS prompt');
+        }
+        setDeferredPrompt(null); // Clear the prompt once handled
+      });
+    }
+  };
+
   // --- High Score and Game Initialization ---
   useEffect(() => {
     const savedHighScore = localStorage.getItem('circleGameHighScore');
@@ -195,6 +226,11 @@ function App() {
               <button onClick={handleRestart}>Restart Game</button>
             )
           )}
+          {deferredPrompt && (
+            <button className="install-button" onClick={handleInstallClick}>
+              Install App
+            </button>
+          )}
 
           {!isGameOver && <p>Fill the quadrants, but don't let one get too full!</p>}
         </div>
@@ -204,3 +240,4 @@ function App() {
 }
 
 export default App;
+

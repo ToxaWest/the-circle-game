@@ -50,19 +50,27 @@ registerRoute(
 // precache, in this case just an image fetch.
 registerRoute(
   // Add in any other file extensions you want to cache, for example:
-  // /\.jpe?g$/,
-  // /\.ico$/,
-  // /\.png$/,
-  ({ url }) => url.origin === self.location.origin && url.pathname.endsWith('.png'), // Customize this strategy as needed, e.g., by changing the cache name.
+  ({ url }) =>
+    url.origin === self.location.origin &&
+    (url.pathname.endsWith('.png') ||
+      url.pathname.endsWith('.jpg') ||
+      url.pathname.endsWith('.jpeg') ||
+      url.pathname.endsWith('.svg') ||
+      url.pathname.endsWith('.gif') ||
+      url.pathname.endsWith('.webp') ||
+      url.pathname.endsWith('.css') ||
+      url.pathname.endsWith('.js') ||
+      url.pathname.match(/\.(?:eot|otf|ttc|ttf|woff|woff2|font.css)$/i)), // Customize this strategy as needed, e.g., by changing the cache name.
   new StaleWhileRevalidate({
-    cacheName: 'images',
+    cacheName: 'static-assets', // Changed cache name to be more generic
     plugins: [
       // Ensure that once this runtime cache reaches a maximum size the
-      // least recently used images are removed.
-      new ExpirationPlugin({ maxEntries: 50 }),
+      // least recently used entries are removed.
+      new ExpirationPlugin({ maxEntries: 100 }), // Increased maxEntries
     ],
   })
 );
+
 
 // This allows the web app to trigger a skipWaiting via
 // registration.waiting.postMessage({type: 'SKIP_WAITING'})
