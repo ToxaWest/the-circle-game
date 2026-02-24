@@ -20,7 +20,6 @@
   ],
   "start_url": "/",
   "display": "fullscreen",
-  "display_override": ["window-controls-overlay", "minimal-ui"],
   "orientation": "portrait",
   "theme_color": "#282c34",
   "background_color": "#ffffff"

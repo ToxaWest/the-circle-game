@@ -27,7 +27,9 @@ function App() {
   // --- PWA Install Prompt Listener ---
   useEffect(() => {
     const handleBeforeInstallPrompt = (e) => {
+      // Prevent the mini-infobar from appearing on mobile
       e.preventDefault();
+      // Stash the event so it can be triggered later.
       setDeferredPrompt(e);
     };
 
@@ -38,7 +40,8 @@ function App() {
     };
   }, []);
 
-  const handleInstallClick = () => {
+  // --- Auto-trigger PWA Install Prompt ---
+  useEffect(() => {
     if (deferredPrompt) {
       deferredPrompt.prompt();
       deferredPrompt.userChoice.then((choiceResult) => {
@@ -50,7 +53,7 @@ function App() {
         setDeferredPrompt(null); // Clear the prompt once handled
       });
     }
-  };
+  }, [deferredPrompt]);
 
   // --- High Score and Game Initialization ---
   useEffect(() => {
@@ -225,11 +228,6 @@ function App() {
             ) : (
               <button onClick={handleRestart}>Restart Game</button>
             )
-          )}
-          {deferredPrompt && (
-            <button className="install-button" onClick={handleInstallClick}>
-              Install App
-            </button>
           )}
 
           {!isGameOver && <p>Fill the quadrants, but don't let one get too full!</p>}
